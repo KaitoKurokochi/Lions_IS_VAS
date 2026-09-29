@@ -46,31 +46,32 @@ h1 {
 
 .field-row {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 16px;
 }
 
 .field-row .field {
   margin-bottom: 0;
-  flex: 1;
   min-width: 0;
+  flex: 2 1 0;
 }
 
 .field-row .field-narrow {
-  flex: 0 0 96px;
+  flex: 1 1 0;
 }
 
 @media (max-width: 480px) {
   .field-row {
-    flex-wrap: wrap;
+    gap: 6px;
   }
 
-  .field-row .field {
-    flex: 1 1 100%;
+  .field-row .field label {
+    font-size: 12px;
   }
 
-  .field-row .field-narrow {
-    flex: 1 1 100%;
+  .field-row .field input {
+    font-size: 14px;
+    padding: 8px 6px;
   }
 }
 

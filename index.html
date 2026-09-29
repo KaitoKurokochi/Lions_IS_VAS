@@ -9,6 +9,102 @@
 <body>
   <main>
     <h1>VAS主観的評価</h1>
+    <p class="intro">
+      下の1〜6の設問において、スライダーを直線上の最も近い位置に合わせてください。
+      <button type="button" id="info-link" class="link-button">説明を見る</button>
+    </p>
+
+    <form id="vas-form">
+      <div class="field-row">
+        <div class="field">
+          <label for="name">名前</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="field">
+          <label for="date">日付</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+        <div class="field field-narrow">
+          <label for="atbat">何打席目？</label>
+          <input type="number" id="atbat" name="atbat" min="1" step="1" required />
+        </div>
+      </div>
+
+      <div class="vas-item">
+        <p class="vas-question">1. 集中度合い</p>
+        <div class="vas-anchors">
+          <span>全く集中できない</span>
+          <span>自分が出せるマックスの集中</span>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="vas-slider" name="concentration" />
+      </div>
+
+      <div class="vas-item">
+        <p class="vas-question">2. 緊張度合い</p>
+        <div class="vas-anchors">
+          <span>全く緊張していない</span>
+          <span>これまで経験したマックスの緊張度</span>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="vas-slider" name="tension" />
+      </div>
+
+      <div class="vas-item">
+        <p class="vas-question">3. 不安度合い</p>
+        <div class="vas-anchors">
+          <span>全く不安がない</span>
+          <span>これまで経験したマックスの不安度</span>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="vas-slider" name="anxiety" />
+      </div>
+
+      <div class="vas-item">
+        <p class="vas-question">4. 思考の度合い</p>
+        <div class="vas-anchors">
+          <span>全く何も考えていない</span>
+          <span>これ以上考えられないくらい考えを巡らせていた</span>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="vas-slider" name="thinking" />
+      </div>
+
+      <div class="vas-item">
+        <p class="vas-question">5. 積極性の度合い</p>
+        <div class="vas-anchors">
+          <span>何もする気力がないくらい消極的</span>
+          <span>とにかく何でも行動に移すくらい積極的</span>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="vas-slider" name="assertiveness" />
+      </div>
+
+      <div class="vas-item">
+        <p class="vas-question">6. 打席評価</p>
+        <div class="vas-anchors">
+          <span>最も悪い</span>
+          <span>満点</span>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="vas-slider" name="atbat_eval" />
+      </div>
+
+      <button type="submit" id="save-btn">SAVE</button>
+      <p id="save-status" role="status"></p>
+    </form>
+
+    <dialog id="info-dialog">
+      <h2>Visual Analogue Scale (VAS)による主観的評価</h2>
+      <p>
+        心理状態を中心にバッティング直前の状態に関する主観的な評価を実施します。脳波データの活用に非常に重要な情報ですので、以下の点に留意していただき、しっかりとご回答をお願いいたします。
+      </p>
+      <ul>
+        <li>0点、100点のときのイメージはなるべく毎度揃えてください</li>
+        <li>回答に時間をかける必要はありません。ただし、その時の状態をしっかりと振り返ったうえで回答をお願いいたします</li>
+      </ul>
+      <p><strong>＜良い例＞</strong></p>
+      <p>「自分が出せるマックスの集中は〇年前の△のときで、それと比べると80点くらいかな」</p>
+      <p>「1打席目はちょっと緊張したから70点、2打席目はそれよりも少し低いから60点くらいかな」</p>
+      <p><strong>＜ダメな例＞</strong></p>
+      <p>「マックスの集中度からしてなんとなく50点」（100点がどのような場合かが毎度ブレる）</p>
+      <p>「特に緊張しなかったし、なんとなく全部30点くらいのところでいいや」</p>
+      <button type="button" id="close-dialog">閉じる</button>
+    </dialog>
   </main>
   <script src="script.js"></script>
 </body>

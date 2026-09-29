@@ -1,0 +1,27 @@
+:root {
+  --navy: #0a285a;
+  --tint: #dce6f5;
+  --body-gray: #464646;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", -apple-system, sans-serif;
+  color: var(--body-gray);
+  background: #ffffff;
+}
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+h1 {
+  color: var(--navy);
+  font-size: 22px;
+}

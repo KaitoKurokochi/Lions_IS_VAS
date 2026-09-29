@@ -9,8 +9,10 @@ document.getElementById("close-dialog").addEventListener("click", () => {
   infoDialog.close();
 });
 
-const APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbw7XNX_JFThBn-952iZ8Vi12iG3PHxj96tD9umUPiCR4KLONqK7IvCUOcpnN1b5YGmk/exec";
+// Both placeholders are replaced at Pages build time from GitHub Actions
+// secrets (see .github/workflows/pages.yml) -- never commit real values here.
+const APPS_SCRIPT_URL = "__APPS_SCRIPT_URL__";
+const VAS_TOKEN = "__VAS_TOKEN__";
 
 const form = document.getElementById("vas-form");
 const saveButton = document.getElementById("save-btn");
@@ -20,6 +22,7 @@ form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const data = Object.fromEntries(new FormData(form).entries());
+  data.token = VAS_TOKEN;
 
   saveButton.disabled = true;
   saveStatus.textContent = "送信中...";

@@ -7,6 +7,25 @@
 // VAS_TOKEN GitHub Actions secret, which the Pages build injects into the
 // frontend (see .github/workflows/pages.yml and script.js).
 
+function jsonResponse(obj) {
+  return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(
+    ContentService.MimeType.JSON
+  );
+}
+
+// Read-only endpoint for the analysis app: GET <url>?token=<SHARED_TOKEN>
+// returns every row as display strings (so dates stay "2026-10-14" instead of
+// being shifted by a UTC conversion), header row included.
+function doGet(e) {
+  const expectedToken = PropertiesService.getScriptProperties().getProperty("SHARED_TOKEN");
+  if (!expectedToken || !e.parameter || e.parameter.token !== expectedToken) {
+    return jsonResponse({ status: "error", message: "unauthorized" });
+  }
+
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
+  return jsonResponse({ status: "ok", rows: sheet.getDataRange().getDisplayValues() });
+}
+
 function doPost(e) {
   const expectedToken = PropertiesService.getScriptProperties().getProperty("SHARED_TOKEN");
   const data = JSON.parse(e.postData.contents);
